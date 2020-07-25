@@ -52,6 +52,10 @@ class OhlcRepo(object):
         self.db_inst = self.db_cli[collection_name]
         return list(self.db_inst.find(query).sort('timestamp', pymongo.DESCENDING))
 
+    def find_records_with_sort_field(self, collection_name, query, field):
+        self.db_inst = self.db_cli[collection_name]
+        return list(self.db_inst.find(query).sort(field, pymongo.DESCENDING))
+
     def find_record_with_projection_limit(self, collection_name, query, projection, limit):
         self.db_inst = self.db_cli[collection_name]
         return list(self.db_inst.find(query, projection).sort('timestamp', pymongo.DESCENDING).limit(limit))
