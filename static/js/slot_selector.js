@@ -30,7 +30,7 @@ function changeMyPosition(slot_id) {
 }
 
 function addHiddenInputTags() {
-    if (slots.length != 3) {
+    if (slots.length != 4) {
         alert('You have to select 3 preferences');
     }
     else {
@@ -42,16 +42,22 @@ function addHiddenInputTags() {
         my_form.appendChild(obj1);
 
         let obj2 = document.createElement('input')
-        obj2.name = 'preference1'
+        obj2.name = 'preference2'
         obj2.type = 'text';
         obj2.value = slots[1];
         my_form.appendChild(obj2);
 
         let obj3 = document.createElement('input')
-        obj3.name = 'preference1'
+        obj3.name = 'preference3'
         obj3.type = 'text';
         obj3.value = slots[2];
         my_form.appendChild(obj3);
+
+        let obj4 = document.createElement('input')
+        obj4.name = 'preference4'
+        obj4.type = 'text';
+        obj4.value = slots[3];
+        my_form.appendChild(obj4);
 
         document.getElementById('submit_choice').click();
     }
