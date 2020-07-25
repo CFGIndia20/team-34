@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>The Nudge</title>
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- Bootstrap Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../static/css/teacherdbstyle.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".hamburger").click(function(){
+			   $(".wrapper").toggleClass("collapse");
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="top_navbar">
+    <div class="hamburger">
+       <div class="one"></div>
+       <div class="two"></div>
+       <div class="three"></div>
+    </div>
+    <div class="top_menu">
+      <div class="logo">THE NUDGE</div>
+      <ul>
+        <li><a href="#">
+          <i class="fas fa-search"></i></a></li>
+        <li><a href="#">
+          <i class="fas fa-bell"></i>
+          </a></li>
+        <li><a href="#">
+          <i class="fas fa-user"></i>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+      <ul>
+        <li><a href="#">
+          <span class="icon"><i class="fas fa-square"></i></span>
+          <span class="title">Schedule</span></a></li>
+        <li><a href="#">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Calender of events</span>
+          </a></li>
+        <li><a href="#">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Attendance</span>
+          </a></li>
+        <li><a href="#" class="active">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Assign marks</span>
+          </a></li>
+        <li><a href="#">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Syllabus</span>
+          </a></li>
+	<li><a href="#">
+          <span class="icon"><i class="fas fa-leaf"></i></span>
+          <span class="title">Resources</span>
+          </a></li>
+	<li><a href="#">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Leave request</span>
+          </a></li>
+	<li><a href="#">
+          <span class="icon"><i class="fas fa-link"></i></span>
+          <span class="title">Shoot imp links</span>
+          </a></li>
+    </ul>
+  </div>
+  
+  <div class="main_container">
+    <div class="item">
+        <div class = "row">
+            <div class = "col-sm-6">
+                <button type = "submit" class = "btn btn-primary btn-lg btn-block">Allot students to batches</button>
+            </div>
+            <div class = "col-sm-6">
+                <button type = "submit" class = "btn btn-primary btn-lg btn-block">Allot teachers to batches</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+	
+</body>
+</html>
