@@ -159,6 +159,110 @@ def candidate_placement():
         return data
 
 
+#################################################################
+##                     Teacher Attendance
+#################################################################
+
+
+@app.route("/teacher_batches_attendance", methods=["GET", "POST"])
+def teacher_batches_attendance():
+    if request.method == 'GET':
+        # Assuming session data is available
+        session["email"] = "teacher@gmail.com"
+
+        ob = repo.OhlcRepo()
+        results = ob.find_record_with_projection(collection_name="teachers", query={"email": session["email"]}, projection={"assigned": 1})[0]
+
+        assigned = results["assigned"]
+        batch_ids = []
+        for entry in assigned:
+            batch_ids.append(entry["batch_id"])
+
+        return render_template('teacher_attendance.html', batch_ids=batch_ids)
+
+    elif request.method == 'POST':
+
+        print("Request Form: ", request.form)
+        print("Len: ", len(request.form))
+        if len(request.form) ==  1:
+            batch_id = request.form["batch"]
+            print("Batch ID: ", batch_id)
+            ob = repo.OhlcRepo()
+
+            results = ob.find_record_with_projection(collection_name="teachers", query={"email": session["email"]}, projection={"assigned": 1})[0]
+            assigned = results["assigned"]
+            batch_ids = []
+            for entry in assigned:
+                batch_ids.append(entry["batch_id"])
+
+            print("Batch type: ", type(batch_id))
+            results = ob.find_record_with_projection(collection_name="students", query={"batch_id": float(batch_id)}, projection={"email": 1, "name": 1, "attendance": 1})
+            print("Students: ", results)
+            return render_template('teacher_attendance.html', batch_ids=batch_ids, students=results)
+        
+        else:
+
+            ob = repo.OhlcRepo()
+            print(request.form)
+            for email in request.form:
+                print(email)
+                attendance = request.form[email]
+                ob.update_query(collection_name="students", query_doc={"email": email}, insert_doc={"attendance": attendance})
+
+            return render_template('teacher_dashboard.html')
+
+
+#################################################################
+##                     Teacher Marks
+#################################################################
+
+
+@app.route("/teacher_batches_marks", methods=["GET", "POST"])
+def teacher_batches_marks():
+    if request.method == 'GET':
+        # Assuming session data is available
+        session["email"] = "teacher@gmail.com"
+
+        ob = repo.OhlcRepo()
+        results = ob.find_record_with_projection(collection_name="teachers", query={"email": session["email"]}, projection={"assigned": 1})[0]
+
+        assigned = results["assigned"]
+        batch_ids = []
+        for entry in assigned:
+            batch_ids.append(entry["batch_id"])
+
+        return render_template('teacher_assignmarks.html', batch_ids=batch_ids)
+
+    elif request.method == 'POST':
+
+        print("Request Form: ", request.form)
+        print("Len: ", len(request.form))
+        if len(request.form) ==  1:
+            batch_id = request.form["batch"]
+            print("Batch ID: ", batch_id)
+            ob = repo.OhlcRepo()
+
+            results = ob.find_record_with_projection(collection_name="teachers", query={"email": session["email"]}, projection={"assigned": 1})[0]
+            assigned = results["assigned"]
+            batch_ids = []
+            for entry in assigned:
+                batch_ids.append(entry["batch_id"])
+
+            print("Batch type: ", type(batch_id))
+            results = ob.find_record_with_projection(collection_name="students", query={"batch_id": float(batch_id)}, projection={"email": 1, "name": 1, "marks": 1})
+            print("Students: ", results)
+            return render_template('teacher_assignmarks.html', batch_ids=batch_ids, students=results)
+        
+        else:
+
+            ob = repo.OhlcRepo()
+            print(request.form)
+            for email in request.form:
+                print(email)
+                marks = request.form[email]
+                ob.update_query(collection_name="students", query_doc={"email": email}, insert_doc={"marks": marks})
+
+            return render_template('teacher_dashboard.html')
     
 
 

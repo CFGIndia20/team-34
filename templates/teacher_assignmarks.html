@@ -93,7 +93,7 @@
 
     <div class="main_container">
 
-      <form action="/route" method="POST">
+      <form action="/teacher_batches_marks" method="POST">
       <div class="item">
         Assign Marks
       </div>
@@ -101,15 +101,14 @@
         <div class="form-group">
           <label for="sel1">Your batches:</label>
           <select class="form-control" id="sel1" name="batch">
-            <option>B1</option>
-            <option>B2</option>
-            <option>B3</option>
-            <option>B4</option>
+            {%for item in batch_ids%}
+            <option>{{item}}</option>
+            {%endfor%}
           </select>
         </div>
         <button class="btn btn-warning" type="submit">Fetch Students</button>
       </div>
-      <!-- Jinja will be used -->
+      {%if students%}
       <div class="item">
         <table class="table table-striped">
           <thead>
@@ -120,27 +119,20 @@
             </tr>
           </thead>
           <tbody>
+            {%for item in students%}
             <tr>
-              <td>B2313</th>
-              <td>John Doe</td>
-              <td><input type="number" id="quantity" name="quantity" min="0" max="100" value="4" name="jinja dega"></td>
+              <td>{{item.email}}</th>
+              <td>{{item.name}}</td>
+              <td><input type="number" id="quantity" name="{{item.email}}" min="0" value="{{item.marks}}"></td>
             </tr>
-            <tr>
-              <td>B2313</th>
-              <td>John Doe</td>
-              <td><input type="number" id="quantity" name="quantity" min="0" max="100" value="4" name="jinja dega"></td>
-            </tr>
-            <tr>
-              <td>B2313</th>
-              <td>John Doe</td>
-              <td><input type="number" id="quantity" name="quantity" min="0" max="100" value="4" name="jinja dega"></td>
-            </tr>
+            {%endfor%}
           </tbody>
         </table>
       </div>
       <div class="item text-center">
         <button type="submit" class='btn btn-success'>Submit</button>
       </div>
+      {%endif%}
     </form>
     </div>
   </div>
