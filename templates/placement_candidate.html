@@ -33,20 +33,22 @@
                     <thead>
                         <tr>
                             <th>Company Name</th>
-                            <th>Salary</th>
+                            <th>Approx. Salary</th>
                             <th>Location</th>
                             <th>Skills</th>
-                            <th>Apply</th>
+                            <th>Application Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {%for item in companies%}
                         <tr>
-                            <td>Company Name</td>
-                            <td>Start Date</td>
-                            <td>Location</td>
-                            <td>Skills</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.salary}}</td>
+                            <td>{{item.location}}</td>
+                            <td>{{item.skills}}</td>
                             <td><button class = "btn btn-success btn-block" onclick=this.disabled=true>Apply Now</button></td>
                         </tr>
+                        {%endfor%}
                     </tbody>
                 </table>
             </div>

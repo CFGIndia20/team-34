@@ -33,22 +33,20 @@
                     <thead>
                         <tr>
                             <th>Candidate Name</th>
-                            <th>Skills</th>
-                            <th>Location</th>
                             <th>Marks</th>
-                            <th>Attendance</th>
-                            <th>Notify</th>
+                            <th>Location</th>
+                            <th>Application Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {%for item in candidates%}
                         <tr>
-                            <td>Candidate Name</td>
-                            <td>Skills</td>
-                            <td>Location</td>
-                            <td>Marks</td>
-                            <td>Attendance</td>
-                            <td><button class = "btn btn-success btn-block" onclick=this.disabled=true>Notify</button></td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.marks}}</td>
+                            <td>{{item.address}}</td>
+                            <td><button class = "btn btn-success btn-block" onclick=this.disabled=true>Notify Candidate</button></td>
                         </tr>
+                        {%endfor%}
                     </tbody>
                 </table>
             </div>
