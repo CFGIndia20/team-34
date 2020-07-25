@@ -55,7 +55,11 @@
   
   <div class="sidebar">
       <ul>
-        <li><a href="#" class="active">
+        <li><a href="/students/schedule">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Schedule</span>
+          </a></li>
+        <li><a href="/students/analytics" class="active">
           <span class="icon"><i class="fas fa-book"></i></span>
           <span class="title">Marks/Attendance</span>
           </a></li>
@@ -70,7 +74,7 @@
                     <div class="panel-heading">
                         <img class = "image-responsive" src = "../static/img/marks.jpeg">
                     </div>
-                    <div class="panel-body"><h2>100</h2></div>
+                    <div class="panel-body"><h2>{{marks}}</h2></div>
                     <div class = "panel-footer"><button class = "btn btn-primary btn-block" disabled>Marks</button></div>
                 </div>
             </div>
@@ -79,7 +83,7 @@
                     <div class="panel-heading">
                         <img class = "image-responsive" src = "../static/img/attendance.jpeg">
                     </div>
-                    <div class="panel-body"><h2>10 / 10</h2></div>
+                    <div class="panel-body"><h2>{{attendance}}</h2></div>
                     <div class = "panel-footer"><button class = "btn btn-primary btn-block" disabled>Attendance</button></div>
                 </div>
             </div>
