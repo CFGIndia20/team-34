@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The/Nudge</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../static/img/favicon.ico">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <p>Available Slots</p>
+    <div class="row" id="all_choices">
+        <button id="slot1" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot1')">7:00AM - 8:00AM</button>
+        <button id="slot2" class="btn btn-success col-2 m-2" onclick="changeMyPosition('slot2')">8:00AM - 9:00AM</button>
+        <button id="slot3" class="btn btn-danger col-2 m-2" onclick="changeMyPosition('slot3')">9:00AM - 10:00AM</button>
+        <button id="slot4" class="btn btn-warning col-2 m-2" onclick="changeMyPosition('slot4')">10:00AM - 11:00AM</button>
+        <button id="slot5" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot5')">11:00AM - 12:00PM</button>
+        <button id="slot6" class="btn btn-success col-2 m-2" onclick="changeMyPosition('slot6')">12:00PM - 1:00AM</button>
+        <button id="slot7" class="btn btn-danger col-2 m-2" onclick="changeMyPosition('slot7')">1:00PM - 2:00PM</button>
+        <button id="slot8" class="btn btn-warning col-2 m-2" onclick="changeMyPosition('slot8')">2:00PM - 3:00PM</button>
+        <button id="slot9" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot9')">3:00PM - 4:00PM</button>
+        <button id="slot10" class="btn btn-success col-2 m-2" onclick="changeMyPosition('slot10')">4:00PM - 5:00PM</button>
+        <button id="slot11" class="btn btn-danger col-2 m-2" onclick="changeMyPosition('slot11')">5:00PM - 6:00PM</button>
+        <button id="slot12" class="btn btn-warning col-2 m-2" onclick="changeMyPosition('slot12')">6:00PM - 7:00PM</button>
+        <button id="slot13" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot13')">7:00PM - 8:00PM</button>
+    </div>
+    <hr>
+    <p>Selected Slots</p>
+    <div class="row" id="selected_choices"></div>
+    <form id="my_form" class="d-none" action="/slots" method="POST">
+        <button type="submit" id="submit_choice"></button>
+    </form>
+
+    <button class="btn btn-submit" onclick="addHiddenInputTags()">Submit</button>
+    <script src="../static/js/slot_selector.js"></script>
+</body>
