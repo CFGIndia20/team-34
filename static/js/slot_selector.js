@@ -4,23 +4,23 @@ function removeA(arr) {
     var what, a = arguments, L = a.length, ax;
     while (L > 1 && arr.length) {
         what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
+        while ((ax = arr.indexOf(what)) !== -1) {
             arr.splice(ax, 1);
         }
     }
     return arr;
 }
 
-function changeMyPosition(slot_id){
+function changeMyPosition(slot_id) {
     let selected_slot = document.getElementById(slot_id);
     // console.log(document.getElementById('all_choices').contains(selected_slot));
-    if(document.getElementById('all_choices').contains(selected_slot)){
+    if (document.getElementById('all_choices').contains(selected_slot)) {
         console.log('Hello 1');
         document.getElementById('all_choices').removeChild(selected_slot);
         document.getElementById('selected_choices').appendChild(selected_slot);
         slots.push(slot_id);
     }
-    else if(document.getElementById('selected_choices').hasChildNodes(selected_slot)){
+    else if (document.getElementById('selected_choices').hasChildNodes(selected_slot)) {
         console.log('Hello 2');
         document.getElementById('selected_choices').removeChild(selected_slot);
         document.getElementById('all_choices').appendChild(selected_slot);
@@ -29,25 +29,31 @@ function changeMyPosition(slot_id){
     console.log(slots);
 }
 
-function addHiddenInputTags(){
-    let my_form = document.getElementById('my_form');
-    let obj1 = document.createElement('input')
-    obj1.name = 'preference1'
-    obj1.type = 'text';
-    obj1.value = slots[0];
-    my_form.appendChild(obj1);
+function addHiddenInputTags() {
+    if (slots.length != 3) {
+        alert('You have to select 3 preferences');
+    }
+    else {
+        let my_form = document.getElementById('my_form');
+        let obj1 = document.createElement('input')
+        obj1.name = 'preference1'
+        obj1.type = 'text';
+        obj1.value = slots[0];
+        my_form.appendChild(obj1);
 
-    let obj2 = document.createElement('input')
-    obj2.name = 'preference1'
-    obj2.type = 'text';
-    obj2.value = slots[1];
-    my_form.appendChild(obj2);
+        let obj2 = document.createElement('input')
+        obj2.name = 'preference1'
+        obj2.type = 'text';
+        obj2.value = slots[1];
+        my_form.appendChild(obj2);
 
-    let obj3 = document.createElement('input')
-    obj3.name = 'preference1'
-    obj3.type = 'text';
-    obj3.value = slots[2];
-    my_form.appendChild(obj3);
+        let obj3 = document.createElement('input')
+        obj3.name = 'preference1'
+        obj3.type = 'text';
+        obj3.value = slots[2];
+        my_form.appendChild(obj3);
 
-    document.getElementById('submit_choice').click();
+        document.getElementById('submit_choice').click();
+    }
+
 }
