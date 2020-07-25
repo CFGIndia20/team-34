@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Nudge</title>
+	<link rel="stylesheet" href="../static/css/teacherdbstyle.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".hamburger").click(function(){
+			   $(".wrapper").toggleClass("collapse");
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="top_navbar">
+    <div class="hamburger">
+       <div class="one"></div>
+       <div class="two"></div>
+       <div class="three"></div>
+    </div>
+    <div class="top_menu">
+      <div class="logo">THE NUDGE</div>
+      <ul>
+        <li><a href="#">
+          <i class="fas fa-search"></i></a></li>
+        <li><a href="#">
+          <i class="fas fa-bell"></i>
+          </a></li>
+        <li><a href="#">
+          <i class="fas fa-user"></i>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+      <ul>
+        <li><a href="#">
+          <span class="icon"><i class="fas fa-square"></i></span>
+          <span class="title">Schedule</span></a></li>
+        <li><a href="#" class="active">
+          <span class="icon"><i class="fas fa-book"></i></span>
+          <span class="title">Attendance and Grade</span>
+          </a></li>
+    </ul>
+  </div>
+  
+  <div class="main_container">
+     <div class="item">
+	<div class="w3-card">
+	  <p><h3>Day: </h3></p>  <!--Should collect the info from database-->
+	</div>
+    </div>
+    <div class="item">
+	<div class="w3-card">
+	  <p><h3>7am-8am</h3></p>
+	</div>
+    </div>
+  </div>
+</div>
+	
+</body>
+</html>
