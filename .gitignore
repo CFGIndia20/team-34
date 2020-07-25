@@ -4,3 +4,5 @@ Team*.zip
 *.crt
 *.key
 *.ovpn
+
+__pycache__
