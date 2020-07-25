@@ -80,5 +80,47 @@ def register_slots():
 
         return jsonify({"data": "Success"})
 
+
+@app.route("/teacher/shoot_link", methods=["GET", "POST"])
+def shoot_link():
+    session["email"] = "someone@gmail.com"
+    if request.method == "GET":
+        return render_template("teacher_shoot_link.html", data = "TESTING")
+    else:
+        email = session["email"]
+        ob = repo.OhlcRepo()
+        teacher = ob.find_records_with_querys(collection_name="teachers", query={"email": email})[0]
+        batches = teacher.batches
+        return batches
+
+
+@app.route("/teacher/update_shoot_link", methods=["GET", "POST"])
+def update_shoot_link():
+    session["email"] = "someone@gmail.com"
+    if request.method == "GET":
+        return render_template("teacher_shoot_link.html", data="TESTING")
+    else:
+        form = {}
+        print(request.form)
+        batch_id = request.form["batch_id"]
+        date = request.form["date"]
+        time = request.form["time"]
+        link = request.form["link"]
+
+        email = session["email"]
+        ob = repo.OhlcRepo()
+        teacher = ob.find_records_with_querys(
+            collection_name="teachers", query={"email": email})[0]
+        batches = teacher.batches
+        for obj in batches:
+            if obj.batch_id == batch_id :
+                obj.video.append({
+                    "date": date,
+                    "time": time,
+                    "link": link
+                })
+        ob.update_query(collection_name="teachers", query_doc={"email": email}, insert_doc={"batches":batches})[0]
+        return jsonify({"data": "Success"})
+
 if __name__ == '__main__':
     app.run()
