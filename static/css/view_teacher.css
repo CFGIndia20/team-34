@@ -172,17 +172,6 @@ body{
   margin-left: 70px;
 }
 
-.panel {
-    background-color: rgb(146, 199, 199);
-    border-radius: 7px;
-    box-shadow: none;
-}
-
-.panel .panel-body {
-    background-color: white;
-  border-radius: 7px;
-}
-
-.badge {
-    border-radius: 10px;
+table {
+    text-align: center;
 }
