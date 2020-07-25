@@ -153,6 +153,28 @@ def candidate_placement():
         })
         return data
 
+@app.route("/teachers/schedule", methods=["GET", "POST"])
+def teachers_schedule():
+    if request.method == "GET":
+        session["email"] = "teacher@gmail.com"
+
+        ob = repo.OhlcRepo()
+        results = ob.find_record_with_projection(collection_name="teachers", query={"email": session["email"]}, projection={"assigned": 1})[0]
+        assigned = results["assigned"]
+        
+        schedule = []
+        slot_mapping = {1: "7am - 8am", 2: "8am - 9am", 3: "9am - 10am", 4: "10am - 11am", 5: "11am - 12pm", 6: "12pm - 1pm",
+        7: "1pm - 2pm", 8: "2pm - 3pm", 9: "3pm - 4pm", 10: "4pm - 5pm", 11: "5pm - 6pm", 12: "6pm - 7pm", 13: "7pm - 8pm"}
+
+        for entry in assigned:
+            timing = slot_mapping[entry["slot"]]
+            if entry["batch_id"]:
+                schedule.append({"slot": timing, "batch": entry["batch_id"]})
+            else:
+                schedule.append({"slot": timing, "batch": "--"})
+
+        print(schedule)
+        return render_template("teacher_schedule.html", schedule=schedule)
 
 #################################################################
 ##                     Teacher Attendance
@@ -259,10 +281,6 @@ def teacher_batches_marks():
 
             return render_template('teacher_dashboard.html')
     
-
-
-    
-
 
 if __name__ == '__main__':
     app.run()
