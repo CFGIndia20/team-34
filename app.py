@@ -280,6 +280,49 @@ def teacher_batches_marks():
                 ob.update_query(collection_name="students", query_doc={"email": email}, insert_doc={"marks": marks})
 
             return render_template('teacher_dashboard.html')
+
+
+#################################################################
+##                     Admin View Batches
+#################################################################
+
+
+@app.route("/admin/view_batches", methods=["GET", "POST"])
+def view_batch_list():
+    if request.method == 'GET':
+        return render_template("view_batches.html")
+    else:
+        session["email"] = "someone@gmail.com"
+        ob = repo.OhlcRepo()
+        batches = []
+        teachers = ob.find_records_with_query(collection_name="teachers", query={"email":session["email"]})
+        for teacher in teachers:
+            batch_list = teacher.batch_list
+            for batch in batch_list:
+                batches.append(batch)
+        return batches
+
+#################################################################
+##                     Admin View Teachers
+#################################################################  
+
+@app.route("/admin/view_teachers", methods=["GET", "POST"])
+def view_batch_list():
+    if request.method == 'GET':
+        return render_template("view_teachers.html")
+    else:
+        session["email"] = "someone@gmail.com"
+        ob = repo.OhlcRepo()
+        data = []
+        teachers = ob.find_records_with_query(collection_name="teachers", query={"email":session["email"]})
+        for teacher in teachers:
+            data.append({
+                "name": teacher.name
+                "batches": teacher.batch_list
+            })
+        return data
+
+
     
 
 if __name__ == '__main__':
