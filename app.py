@@ -122,5 +122,48 @@ def update_shoot_link():
         ob.update_query(collection_name="teachers", query_doc={"email": email}, insert_doc={"batches":batches})[0]
         return jsonify({"data": "Success"})
 
+@app.route("/placement/candidate", methods=["GET", "POST"])
+def placement_candidate():
+    if request.method == "GET":
+        return render_template("placement_candidate.html", data="TESTING")
+    else:
+        session["email"] = "someone@gmail.com"
+        ob = repo.OhlcRepo()
+        company = ob.find_records("companies")
+        return company
+
+
+@app.route("/placement/employer", methods=["GET", "POST"])
+def placement_employer():
+    if request.method == "GET":
+        return render_template("placement_employer.html", data="TESTING")
+    else:
+        session["email"] = "someone@gmail.com"
+        ob = repo.OhlcRepo()
+        students = ob.find_records("students")
+        return students
+
+
+@app.route("/students/analytics", methods=["GET", "POST"])
+def candidate_placement():
+    if request.method == "GET":
+        return render_template("student_analytics.html", data="TESTING")
+    else:
+        session["email"] = "someone@gmail.com"
+        ob = repo.OhlcRepo()
+        student = ob.find_records_with_query(collection_name="students", query={"email":session["email"]})[0]
+        data = jsonify({
+            "marks": student.marks,
+            "attendance": student.attendance
+        })
+        return data
+
+
+    
+
+
+    
+
+
 if __name__ == '__main__':
     app.run()
