@@ -28,7 +28,8 @@
 </head>
 
 <body>
-    <p>Available Slots</p>
+    <h1>Choose your slots</h1>
+    <label>Available Slots</label>
     <div class="row" id="all_choices">
         <button id="slot1" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot1')">7:00AM - 8:00AM</button>
         <button id="slot2" class="btn btn-success col-2 m-2" onclick="changeMyPosition('slot2')">8:00AM - 9:00AM</button>
@@ -45,12 +46,12 @@
         <button id="slot13" class="btn btn-primary col-2 m-2" onclick="changeMyPosition('slot13')">7:00PM - 8:00PM</button>
     </div>
     <hr>
-    <p>Selected Slots</p>
+    <label>Selected Slots</label>
     <div class="row" id="selected_choices"></div>
     <form id="my_form" class="d-none" action="/register/slots_preference" method="POST">
         <button type="submit" id="submit_choice"></button>
     </form>
 
-    <button class="btn btn-submit" onclick="addHiddenInputTags()">Submit</button>
+    <button class="btn btn-primary" onclick="addHiddenInputTags()">Submit</button>
     <script src="../static/js/slot_selector.js"></script>
 </body>

@@ -5,30 +5,56 @@
 <head lang="en"><meta charset="UTF-8">
     <title>THE/NUDGE</title>
     <link rel="stylesheet" type="text/css" href="../static/css/quizstyle.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/teacherdbstyle.css">
+
 </head>
 <body>
-    <div class="grid">
-        <div id="quiz">
-            <h1>Quiz</h1>
-            <hr style="margin-bottom: 20px">
- 
-            <p id="question"></p>
- 
-            <div class="buttons">
-                <button id="btn0"><span id="choice0"></span></button>
-                <button id="btn1"><span id="choice1"></span></button>
-                <button id="btn2"><span id="choice2"></span></button>
-                <button id="btn3"><span id="choice3"></span></button>
-            </div>
-		<!--<button id="next" onclick="nextFunction()" class="next">Next</button> 
-		<button id="prev" onclick="prevFunction()"class="prev">Previous</button>-->      
- 
-            <hr style="margin-top: 50px">
-            <footer>
-                <p id="progress">Question x of y</p>
-            </footer>
+    <div class="wrapper">
+        <div class="top_navbar">
+          <div class="hamburger">
+             <div class="one"></div>
+             <div class="two"></div>
+             <div class="three"></div>
+          </div>
+          <div class="top_menu">
+            <div class="logo">THE NUDGE</div>
+            <ul>
+              <li><a href="#">
+                <i class="fas fa-search"></i></a></li>
+              <li><a href="#">
+                <i class="fas fa-bell"></i>
+                </a></li>
+              <li><a href="#">
+                <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+          </div>
         </div>
-    </div>
+        <div class = "main_container">
+            <div class="grid">
+                <div id="quiz">
+                    <h1>Quiz</h1>
+                    <hr style="margin-bottom: 20px">
+         
+                    <p id="question"></p>
+         
+                    <div class="buttons">
+                        <button id="btn0"><span id="choice0"></span></button>
+                        <button id="btn1"><span id="choice1"></span></button>
+                        <button id="btn2"><span id="choice2"></span></button>
+                        <button id="btn3"><span id="choice3"></span></button>
+                    </div>
+                <!--<button id="next" onclick="nextFunction()" class="next">Next</button> 
+                <button id="prev" onclick="prevFunction()"class="prev">Previous</button>-->      
+         
+                    <hr style="margin-top: 50px">
+                    <footer>
+                        <p id="progress">Question x of y</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    
  
  
 <script src="../static/js/quizquestion.js"></script>
