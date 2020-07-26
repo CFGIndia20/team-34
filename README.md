@@ -61,7 +61,7 @@ For ppt - Archetecture, USP, Roadmap, Scalability
 ## Algorithms Developed
 ### Grouping of students to form batch - 
 ### Assigning batches to teacher
-We pick all the batches in a round-robin fasion and pick up a teacher randomly using random number generator in built python library. Once we have picked a teacher, we check for all the constraints provided to us, to name a few
+Algorithm picks all the batches in a round-robin fasion and pick up a teacher using random number generator in built python library. Once we have picked a teacher, we check for all the constraints provided to us, to name a few
  - No teacher should have consecutive classes
  - Every teacher should have one class daily
  - Span of classes for a teacher on a particular day should be restrc
@@ -73,14 +73,14 @@ We pick all the batches in a round-robin fasion and pick up a teacher randomly u
   - Problem statement selection
   - Brainstorming session, thourough discussions
   - Work distribution discussion, deadlines proposed
-  - Started coding with implementing simple features like registration page.
-  - After few hours, all of us were familiar with the work and each of us knew what we have to do
+  - Started coding with implementing simple features like registration page
+  - After few hours, all of us were familiar with the work and each of us knew what we have to do furthur
   - There were discussions at regular intervals to catch up with team mates, and to determine what has to be done next
-  - Regular discussions helped us to collaborate better while working on different features.
-  - At the end we were able to produce a MVP for given problem statement.
+  - Regular discussions helped us to collaborate better while working on different features
+  - At the end we were able to produce a MVP for given problem statement
  
  ## How we have tried to make our app scalable
   - Web APIs have been developed, which can be used to develop mobile application later
-  - The algorithm used could handle large number of candidates and implement a good batch distribution.
-  - Database used is MongoDB so it does support concurrency and any changes in data models.
+  - The algorithm used could handle large number of candidates and implement a good batch distribution
+  - Database used is MongoDB so it does support concurrency and any changes in data models
  
