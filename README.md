@@ -88,3 +88,5 @@ Algorithm picks all the batches in a round-robin fasion and pick up a teacher us
   - The algorithm used could handle large number of candidates and implement a good batch distribution
   - Database used is MongoDB so it does support concurrency and any changes in data models
  
+### Video Link
+https://drive.google.com/file/d/13I4UcIklHOiHbsiPXl1yj-8R4bGCfoKH/view?usp=sharing
