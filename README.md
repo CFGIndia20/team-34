@@ -58,12 +58,14 @@ The foundation faces difficulty in distributing students to batches that run on 
 
 
 ## Algorithms Developed
-### Grouping of students to form batch - 
+### Grouping of students to form batch
+We are considering perferences of students for each slot. Based on that we look on the students who are already a part of those 4 slots, and out of the 4 choices the one which is least close to a multiple of 15 is the one where our current student is added in order to maintain equal batch sizes.
+
 ### Assigning batches to teacher
 Algorithm picks all the batches in a round-robin fasion and pick up a teacher using random number generator in built python library. Once we have picked a teacher, we check for all the constraints provided to us, to name a few
  - No teacher should have consecutive classes
  - Every teacher should have one class daily
- - Span of classes for a teacher on a particular day should be restrc
+ - Span of classes for a teacher on a particular day should be restricted within a windows of maximum 8 hours
  
  ## Innovation and Features Implemented
   - Our app provides an intuitive way to view diifferent students, teachers and companies involved in the process.
@@ -76,7 +78,7 @@ Algorithm picks all the batches in a round-robin fasion and pick up a teacher us
   - Brainstorming session, thourough discussions
   - Work distribution discussion, deadlines proposed
   - Started coding with implementing simple features like registration page
-  - After few hours, all of us were familiar with the work and each of us knew what we have to do furthur
+  - After few hours, all of us were familiar with the work and each of us knew what we have to do further
   - There were discussions at regular intervals to catch up with team mates, and to determine what has to be done next
   - Regular discussions helped us to collaborate better while working on different features
   - At the end we were able to produce a MVP for given problem statement
