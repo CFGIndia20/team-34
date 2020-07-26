@@ -56,7 +56,6 @@ The foundation faces difficulty in distributing students to batches that run on 
 ### Student Panel (Placement Portal)
  - http://localhost:5000/placement/candidate -To get the list of all the jobs sorted in descending order of salary
 
-For ppt - Archetecture, USP, Roadmap, Scalability
 
 ## Algorithms Developed
 ### Grouping of students to form batch - 
@@ -67,7 +66,10 @@ Algorithm picks all the batches in a round-robin fasion and pick up a teacher us
  - Span of classes for a teacher on a particular day should be restrc
  
  ## Innovation and Features Implemented
- 
+  - Our app provides an intuitive way to view diifferent students, teachers and companies involved in the process.
+  - We have tried to resolve problem of automated batch distribution so that it can work even with varying number of teachers and candidates.
+  - With our app candidates can now make use of placement portal and view job listings, that helps them to be aware of all job opportunities.
+  - Our app also allows employer to view students and filter them on basis of skillsets !
  
  ## Our journey
   - Problem statement selection
