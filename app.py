@@ -404,8 +404,136 @@ def view_teachers_list():
             })
         return data
 
+#################################################################
+##                   Student - Batch Mapping
+#################################################################  
 
+listofstudents = []
+slot_frequency = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+students_allotted = [[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+batches = []
+
+def giveMeRandom4Slots():
+    ans = []
+    while(len(ans) != 4):
+        my_random_slot = random.randint(1,13)
+        if(my_random_slot not in ans):
+            ans.append("slot" + str(my_random_slot))
+    return ans
+
+def rankMyChoices(choices):
+    ans = []
+    for i in range(0,4):
+        ans.append(slot_frequency[choices[i]]%15)
+    return choices.index(min(choices))
+
+@app.route("/admin/students_allocation", methods=["GET", "POST"])
+def admin_students_allocation():
+
+    ob = repo.OhlcRepo()
+    results = ob.find_record_with_projection(collection_name="students", query={}, projection={"email": 1, "p1": 1, "p2": 1, "p3": 1, "p4": 1})
     
+    listofstudents = []
+    for entry in results:
+        listofstudents.append([entry["email"], [int(entry["p1"][4:]), int(entry["p2"][4:]), int(entry["p3"][4:]), int(entry["p4"][4:])]])
+
+    for i in listofstudents:
+        chosen_slot = rankMyChoices(i[1])
+        slot_frequency[i[1][chosen_slot]] += 1
+        students_allotted[i[1][chosen_slot]].append(i[0])
+
+    #for i in students_allotted:
+    #    print(i)
+
+    batch_number = 1
+    one_batch = []
+    for i in range(len(students_allotted)):
+        for j in students_allotted[i]:
+            if(len(one_batch) < 15):
+                one_batch.append(j)
+            else:
+                batches.append([batch_number, i, one_batch])
+                batch_number += 1
+                one_batch = []
+                one_batch.append(j)
+        if(len(one_batch) > 0):
+            batches.append([batch_number, i, one_batch])
+            batch_number += 1
+            one_batch = []
+
+    batch_dict = {}
+    for i in batches:
+        batch = i[0]
+        slot = i[1]
+        for email in i[2]:
+            batch_dict[str(batch)] = slot
+            ob.update_query(collection_name="students", query_doc={"email": email}, insert_doc={"batch_id": batch, "slot": slot})
+        print(i)
+
+    for batch in batch_dict:
+        ob.insert_record_one(collection_name="batches", insert_doc={"batch": batch, "slot": batch_dict[batch]})
+
+def checkIfSomeTecherIsEmpty(teachers):
+    for i in teachers:
+        if(len(i[2]) == 0):
+            return 1
+    return 0
+
+#################################################################
+##                Teachers - Batch Allocation
+#################################################################  
+
+@app.route("/admin/teachers_allocation", methods=["GET", "POST"])
+def admin_teachers_allocation():
+
+    ite = 0
+
+    ob = repo.OhlcRepo()
+    results1 = ob.find_record_with_projection(collection_name="batches", query={}, projection={"batch": 1, "slot": 1})
+    results2 = ob.find_record_with_projection(collection_name="teachers", query={}, projection={"email": 1})
+
+    data = []
+    for entry in results1:
+        data.append([(entry["batch"]), int(entry["slot"]), 0])
+
+    teachers = []
+    for entry in results2:
+        teachers.append([entry["email"], 0, []])
+
+    print(teachers)
+    print(data)
+    while (checkIfSomeTecherIsEmpty(teachers)):
+        for i in range(len(data)):
+            while (data[i][2] == 0):
+                current_selection = random.randint(0,len(teachers)-1)
+                if(teachers[current_selection][1] < 4):
+                    do_we_reject = 0
+                    maximum_difference = 0
+                    for j in teachers[current_selection][2]:
+                        maximum_difference = max(maximum_difference,abs(data[i][1]-j[1]))
+                        if(abs(j[1]-data[i][1]) <= 1):
+                            do_we_reject = 1
+                            break
+                    if(do_we_reject == 1):
+                        continue
+                    elif(maximum_difference > 8):
+                        continue
+                    else:
+                        teachers[current_selection][2].append([data[i][0],data[i][1]])
+                        teachers[current_selection][1] += 1
+                        data[i][2] = 1
+        ite+=1
+        print(ite)
+
+    for i in teachers:
+        print(i)
+
+        assigned = []
+        for entry in i[2]:
+            assigned.append({"batch" : entry[0], "slot": entry[1]})
+
+        ob.update_query(collection_name="teachers", query_doc={"email": i[0]}, insert_doc={"assigned": assigned})
+        
 
 if __name__ == '__main__':
     app.run()
