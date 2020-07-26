@@ -10,6 +10,12 @@ app.debug = True
 def index():
     return render_template('index.html')
 
+
+#################################################################
+##                     Registration 1st page
+#################################################################
+
+
 @app.route("/register/userdata", methods=["GET", "POST"])
 def register_userdata():
     if request.method == 'GET':
@@ -39,6 +45,13 @@ def register_userdata():
 
         return redirect("/register/entrance_test")
 
+
+
+#################################################################
+##                     Registration 2nd Page
+#################################################################
+
+
 @app.route("/register/entrance_test", methods=["GET", "POST"])
 def register_entrance():
     if request.method == 'GET':
@@ -56,6 +69,12 @@ def register_entrance():
             ob.update_one(collection_name="students",query={"email": form["email"]},insert_doc={"$set":form})
 
         return redirect("/register/slots_preference")
+
+
+#################################################################
+##                     Registration 3rd page
+#################################################################
+
 
 @app.route("/register/slots_preference", methods=["GET", "POST"])
 def register_slots():
@@ -81,6 +100,11 @@ def register_slots():
         return jsonify({"data": "Success"})
 
 
+#################################################################
+##                     Teacher shoot up link
+#################################################################
+
+
 @app.route("/teacher/shoot_link", methods=["GET", "POST"])
 def shoot_link():
     session["email"] = "someone@gmail.com"
@@ -92,6 +116,11 @@ def shoot_link():
         teacher = ob.find_records_with_querys(collection_name="teachers", query={"email": email})[0]
         batches = teacher.batches
         return batches
+
+
+#################################################################
+##                     Teacher add - shoot up link
+#################################################################
 
 
 @app.route("/teacher/update_shoot_link", methods=["GET", "POST"])
@@ -123,12 +152,25 @@ def update_shoot_link():
         return jsonify({"data": "Success"})
 
 
+
+
+#################################################################
+##                     Placement Candidate
+#################################################################
+
 @app.route("/placement/candidate", methods=["GET", "POST"])
 def placement_candidate():
     if request.method == "GET":
         ob = repo.OhlcRepo()
         company = ob.find_records_with_sort_field(collection_name="companies", query={}, field='salary')
         return render_template("placement_candidate.html", companies=company)
+
+
+
+
+#################################################################
+##                     Placement Employer
+#################################################################
 
 
 @app.route("/placement/employer", methods=["GET", "POST"])
@@ -139,19 +181,59 @@ def placement_employer():
         return render_template("placement_employer.html", candidates=candidates)
 
 
+
+#################################################################
+##                     Student Schedule
+#################################################################
+
+@app.route("/students/schedule", methods=["GET", "POST"])
+def student_schedule():
+    session["email"] = "someone@gmail.com"
+    ob = repo.OhlcRepo()
+    student = ob.find_records_with_query(collection_name="students", query={"email":session["email"]})[0]
+    batchid = student.batch_id
+    ob1 = repo.OhlcRepo()
+    teachers = ob1.find_records(collection_name="teachers")
+    for teacher in teachers:
+        for batch in teacher.batch_list:
+            if batchid == batch:
+                link = batch.link
+                slot = batch.slot
+                teacher_name = teacher.name
+
+    data = jsonify({
+        "link": link,
+        "batch": student.batch_id,
+        "slot": slot,
+        "teacher": teacher_name,
+    })
+    return render_template("student_schedule.html", data=data)
+
+
+
+
+#################################################################
+##                     Student Analytics
+#################################################################
+
 @app.route("/students/analytics", methods=["GET", "POST"])
-def candidate_placement():
-    if request.method == "GET":
-        return render_template("student_analytics.html", data="TESTING")
-    else:
-        session["email"] = "someone@gmail.com"
-        ob = repo.OhlcRepo()
-        student = ob.find_records_with_query(collection_name="students", query={"email":session["email"]})[0]
-        data = jsonify({
-            "marks": student.marks,
-            "attendance": student.attendance
-        })
-        return data
+def student_analytics():
+    session["email"] = "someone@gmail.com"
+    ob = repo.OhlcRepo()
+    student = ob.find_records_with_query(collection_name="students", query={"email":session["email"]})[0]
+    data = jsonify({
+        "marks": student.marks,
+        "attendance": student.attendance
+    })
+    return render_template("student_marks&attendance.html", data=data)
+
+
+
+
+#################################################################
+##                     Teacher Schedule
+#################################################################
+
 
 @app.route("/teachers/schedule", methods=["GET", "POST"])
 def teachers_schedule():
@@ -307,7 +389,7 @@ def view_batch_list():
 #################################################################  
 
 @app.route("/admin/view_teachers", methods=["GET", "POST"])
-def view_batch_list():
+def view_teachers_list():
     if request.method == 'GET':
         return render_template("view_teachers.html")
     else:
@@ -317,7 +399,7 @@ def view_batch_list():
         teachers = ob.find_records_with_query(collection_name="teachers", query={"email":session["email"]})
         for teacher in teachers:
             data.append({
-                "name": teacher.name
+                "name": teacher.name,
                 "batches": teacher.batch_list
             })
         return data
