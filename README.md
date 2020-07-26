@@ -37,9 +37,9 @@ The foundation faces difficulty in distributing students to batches that run on 
 
 ## API End Points
 ### Admin Panel (Training Portal)
- - http://localhost:5000/admin/view_batches - List 
- - http://localhost:5000/admin/view_batches
- - http://localhost:5000/admin/view_batches
+ - http://localhost:5000/admin/ - Provide the admin an option to trigger automatic batch allocation to students and to trigger automatic teacher allotment for batches
+ - http://localhost:5000/admin/admin/students_allocation - It runs the algorithm in the background and groups students and displays the grouping via a table
+ - http://localhost:5000/admin/admin/teachers_allocation - It runs the second algorithm in the background and allots teachers to batches and displays it in the form of a table
 
 ### Student Panel (Training Portal)
  - http://localhost:5000/students/analytics - To track progress and attendance
