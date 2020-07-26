@@ -120,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .title-img{
-    height: 100%;
+    max-width: 99%;
+    max-height: 99%;
 }
 
 @media (max-width: 1028px){
